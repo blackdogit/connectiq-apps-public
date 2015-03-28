@@ -13,6 +13,10 @@ class BasePage extends UI.View {
         return "---";
     }
 
+    function isEnabled() {
+        return true;
+    }
+
     var no = 0;
 
     function onLayout(dc) {

@@ -45,6 +45,14 @@ class VibrationPage extends BasePage {
         return "Cycles through some vibration patterns";
     }
 
+    var enabled = true;
+    function initialize() {
+        enabled = (Att has :vibrate);
+    }
+    function isEnabled() {
+        return enabled;
+    }
+
     function select() {
         var item = items[no];
         Att.vibrate(item[1]);

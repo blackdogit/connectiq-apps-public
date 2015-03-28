@@ -13,6 +13,10 @@ class InputPage extends UI.View {
         return "Show input interaction";
     }
 
+    function isEnabled() {
+        return true;
+    }
+
     var txt = "Press key or screen\nPress Back twice to exit";
 
     function onUpdate(dc) {

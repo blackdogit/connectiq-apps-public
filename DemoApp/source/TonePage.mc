@@ -33,6 +33,14 @@ class TonePage extends BasePage {
         return "Cycles through all tones";
     }
 
+    var enabled = true;
+    function initialize() {
+        enabled = (Att has :playTone);
+    }
+    function isEnabled() {
+        return enabled;
+    }
+
     function select() {
         var item = items[no];
         Att.playTone(item[1]);

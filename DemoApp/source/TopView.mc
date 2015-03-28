@@ -4,7 +4,19 @@ using Toybox.Graphics as G;
 class TopView extends UI.View {
 
     // TODO: Can be optimized later to only contain list of classes along with name, description and image.
-    var items = [new ColorPage(), new FontPage(), new SlidePage(), new TonePage(), new VibrationPage(), new InputPage()];
+    //var items = [new ColorPage(), new FontPage(), new SlidePage(), new TonePage(), new VibrationPage(), new InputPage(), new AnimationPage()];
+    var items = [new AnimationPage()];
+
+    function initialize() {
+        var enabled = [];
+        for (var i = 0; i < items.size(); i = i+1) {
+            var p = items[i];
+            if (p.isEnabled()) {
+                enabled = BDIT.ArrayUtils.arrayAdd(enabled, enabled.size(), p);
+            }
+        }
+        items = enabled;
+    }
 
     function getName() {
         return "Pages";
