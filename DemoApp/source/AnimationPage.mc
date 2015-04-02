@@ -18,25 +18,27 @@ class AnimationPage extends BasePage {
         return "Cycles through all animations";
     }
 
+    var d = null;
+
     function onUpdate(dc) {
         var item = items[no];
         dc.setColor(G.COLOR_BLACK, G.COLOR_WHITE);
         dc.clear();
 
         dc.drawText(dc.getWidth()/2, dc.getHeight()/2, G.FONT_MEDIUM, item[0], G.TEXT_JUSTIFY_CENTER|G.TEXT_JUSTIFY_VCENTER);
+        if (d != null) {
+            dc.drawText(dc.getWidth()/2, 0.75*dc.getHeight(), G.FONT_SMALL, ""+d.locX, G.TEXT_JUSTIFY_CENTER|G.TEXT_JUSTIFY_VCENTER);
+        }
     }
 
     function select() {
         var item = items[no];
-        var d = new D({:identifier => "id", :locX => 0, :locY => 10});
+        d = new UI.Drawable({:locX => 0});
         Sys.println("animate: "+item[1]);
-        UI.animate(d, :x, item[1], 10, 200, 10, null);
+        UI.animate(d, :locX, item[1], 0, 100, 5.0, method(:onDone));
     }
-}
 
-class D extends UI.Drawable {
-    function draw(dc) {
-        Sys.println("draw: locX="+locX);
-        dc.drawText(locX, dc.getHeight()/4, G.FONT_SMALL, "XXX", G.TEXT_JUSTIFY_CENTER);
+    function onDone() {
+        d = null;
     }
 }
